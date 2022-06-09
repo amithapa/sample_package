@@ -1,0 +1,26 @@
+name: Releaseing Package
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: ReleasePackage
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install Dependencies
+      run: |
+        pip install build
+    - name: Build Package
+      run: |
+        python -m build
+    - name: Pushing the release
+      run: |
+        ls dist/
