@@ -21,6 +21,11 @@ jobs:
     - name: Build Package
       run: |
         python -m build
-    - name: Pushing the release
+    - name: Listing the release
       run: |
         ls dist/
+    - name: Pushing the release
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: dist/*.whl # or path/to/artifact
